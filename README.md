@@ -146,12 +146,14 @@ Meanwhile, we are also actively working on fine-tuning the removed layers using 
 }
 ```
 
+```bibtex
 @article{liu2025tuna,
   title={Tuna: Taming unified visual representations for native unified multimodal models},
   author={Liu, Zhiheng and Ren, Weiming and Liu, Haozhe and Zhou, Zijian and Chen, Shoufa and Qiu, Haonan and Huang, Xiaoke and An, Zhaochong and Yang, Fanny and Patel, Aditya and others},
   journal={CVPR2026},
   year={2026}
 }
+```
 
 ## License
 
