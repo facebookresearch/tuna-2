@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+#
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
 # Tuna environment setup via uv.
 #
 # This is a thin wrapper around `uv sync` plus a few extras that don't sit
