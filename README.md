@@ -135,7 +135,7 @@ Meanwhile, we are also actively working on fine-tuning the removed layers using 
 
 ```bibtex
 @article{tuna2,
-  title={TUNA-2: Pixel Embeddings Beats Vision Encoders
+  title={TUNA-2: Pixel Embeddings Beat Vision Encoders
          for Unified Understanding and Generation},
   author={Liu, Zhiheng and Ren, Weiming and Huang, Xiaoke
           and Chen, Shoufa and Li, Tianhong and Chen, Mengzhao
