@@ -1,0 +1,47 @@
+# Text-to-video prediction for the 2B VAE model.
+#
+# Generates 13-frame video clips at 384x672 (landscape).
+#
+# All options:
+#   inference.height / width       Frame resolution (default: 384x672)
+#   inference.latent_frames        Number of frames to generate (default: 13)
+#   inference.num_inference_steps  Diffusion steps (default: 50)
+#   inference.shift                Time-shift factor (default: 3)
+#   inference.weight_dtype         bfloat16 or float32
+#   inference.num_images_per_prompt  Number of videos per prompt (default: 1)
+#   inference.ckpt_path            Path to checkpoint
+#   inference.output_dir           Output directory
+
+defaults:
+  - model: tuna_2b
+  - _self_
+
+model:
+  attention_backend: sdpa
+  reshape_frame_to_batch_dim: true
+
+inference:
+  inference_mode: t2i
+  pipe: TunaPipeline
+  use_ckpt: true
+  ckpt_path: ./checkpoints/tuna_2b_video.pt
+  output_dir: ./outputs/predictions/t2v_2b
+  generation_mode: t2v
+  use_chat_template: false
+  add_aspect_ratio_embeds: ${model.add_aspect_ratio_embeds}
+  weight_dtype: bfloat16
+
+  height: 384
+  width: 672
+  latent_frames: 13
+  num_images_per_prompt: 1
+  num_inference_steps: 50
+  shift: 3
+
+  do_sample: false
+  temperature: 1.0
+  top_k: null
+  top_p: null
+  max_new_tokens: 512
+
+prompt: "A cat walking on the beach at sunset"

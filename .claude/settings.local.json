@@ -1,8 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(~/.claude/skills/wiki-query/scripts/graphql_wiki_content *)",
-      "Bash(git push *)"
-    ]
-  }
-}

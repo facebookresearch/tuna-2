@@ -1,0 +1,44 @@
+# Video (t2v) training config for the 2B VAE model.
+# Online VAE encode per frame — no cached features.
+#
+# Smoke test:
+#   torchrun --standalone --nproc-per-node=2 \
+#       -m tuna.scripts.train --config-name video_t2v \
+#       training.max_steps_per_epoch=4 training.batch_size=1
+
+defaults:
+  - model: tuna_2b
+  - _self_
+
+data:
+  _target_: tuna.data.datasets.video_dataset.VideoDataset
+  jsonl_path: ./data_examples/video_pairs.jsonl
+  image_root: ./data_examples
+  image_size: [384, 672]
+  num_frames: 13
+  max_text_length: 2048
+  center_crop: true
+
+training:
+  output_dir: ./outputs/video_t2v
+  max_epochs: 1
+  max_steps_per_epoch: 1000000
+  batch_size: 1
+  num_workers: 0
+  mixed_precision: bf16
+  gradient_accumulation_steps: 1
+  learning_rate: 1.0e-4
+  weight_decay: 1.0e-2
+  warmup_steps: 100
+  log_every: 1
+  save_every: 1000
+  keep_last: 3
+  ema_decay: 0.9999
+  fsdp:
+    enable: true
+    sharding_strategy: FULL_SHARD
+    state_dict_type: SHARDED_STATE_DICT
+    mixed_precision:
+      param_dtype: bf16
+      reduce_dtype: bf16
+      cast_root_forward_inputs: true

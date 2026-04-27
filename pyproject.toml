@@ -1,0 +1,92 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tuna"
+version = "0.1.0"
+description = "Unified multimodal model for image understanding, generation, editing, and reconstruction."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Tuna authors" }]
+classifiers = [
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+# Versions are pinned where it matters (compatibility with the tuna-lmms-eval
+# stack); torch is intentionally loose so users can pick the CUDA wheel that
+# matches their host (see README for the cu121/cu124 install commands).
+dependencies = [
+    "torch>=2.4",
+    "torchvision",
+    "transformers==4.52.4",
+    "tokenizers",
+    "diffusers==0.35.1",
+    "timm==1.0.19",
+    "einops==0.8.1",
+    "torchdiffeq==0.2.5",
+    "torchtnt",
+    "hydra-core>=1.3",
+    "omegaconf==2.3.0",
+    "pillow",
+    "numpy<2",
+    "tqdm",
+    "huggingface-hub",
+    "safetensors",
+    "accelerate>=0.29",
+    "tensorboard",
+    # Python 3.12 venvs no longer ship setuptools by default, AND setuptools
+    # >=81 dropped the bundled `pkg_resources` module that torchtnt's
+    # version.py still imports. Pin to a version that has both.
+    "setuptools>=68,<81",
+]
+
+[project.optional-dependencies]
+eval = [
+    "torch-fidelity",
+    "torchmetrics",
+    "pdf2image",
+]
+dev = [
+    "pytest",
+    "ruff",
+    "ipython",
+]
+
+[project.scripts]
+tuna-train = "tuna.scripts.train:main"
+tuna-predict = "tuna.scripts.predict:main"
+
+[tool.setuptools.packages.find]
+include = ["tuna*"]
+exclude = ["tests*", "data_examples*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+# ---------------------------------------------------------------------------
+# uv-specific configuration. Keeps the pinned environment reproducible across
+# machines: `uv sync` reads this + uv.lock and installs everything below.
+# ---------------------------------------------------------------------------
+[tool.uv]
+# Some upstream wheels (e.g. flash-attn) need to skip PEP 517 build isolation
+# because they rely on torch already being installed. Add to this list as
+# needed.
+no-build-isolation-package = []
+
+# Use the standard PyTorch index for CUDA wheels. Override with --extra-index-url
+# on the command line if you need cu118 / cu124 / cpu.
+[[tool.uv.index]]
+name = "pytorch-cu121"
+url = "https://download.pytorch.org/whl/cu121"
+explicit = true
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cu121" }]
+torchvision = [{ index = "pytorch-cu121" }]

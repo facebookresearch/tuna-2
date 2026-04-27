@@ -1,0 +1,59 @@
+# Image editing prediction config.
+#
+# Variant-specific defaults (pipe, guidance_scale, noise_scale,
+# sampling_method, weight_dtype) are injected by scripts/launch/predict.sh.
+#
+# All options:
+#   inference.pipe              Pipeline class: Tuna2PixelPipeline (none_encoder),
+#                               Tuna2RPixelPipeline (siglip_pixel), TunaPipeline (vae)
+#   inference.generation_mode   edit
+#   inference.height / width    Output resolution, e.g. 512, 1024
+#   inference.num_inference_steps  Diffusion steps (default: 50)
+#   inference.guidance_scale    CFG scale: 2 (none_encoder), 5 (siglip_pixel), 7.5 (vae)
+#   inference.noise_scale       JiT noise scale, pixel variants only (default: 2)
+#   inference.shift             Time-shift factor (default: 3)
+#   inference.sampling_method   euler (none_encoder) or heun (siglip_pixel)
+#   inference.cfg_interval      CFG interval, pixel variants only (default: [0, 1.0])
+#   inference.weight_dtype      bfloat16 (pixel variants) or float32 (vae)
+#   inference.negative_prompt   Negative prompt text
+#   inference.num_images_per_prompt  Number of images per prompt (default: 1)
+#   inference.ckpt_path         Path to checkpoint
+#   inference.output_dir        Output directory
+#   image_path                  Source image path
+#   instruction                 Editing instruction text
+
+defaults:
+  - model: tuna_2_pixel_7b
+  - _self_
+
+inference:
+  inference_mode: edit
+  pipe: Tuna2PixelPipeline
+  use_ckpt: true
+  ckpt_path: ./checkpoints/tuna_2_pixel_7b.pt
+  output_dir: ./outputs/predictions/edit
+  generation_mode: edit
+  use_chat_template: false
+  add_aspect_ratio_embeds: ${model.add_aspect_ratio_embeds}
+  weight_dtype: bfloat16
+
+  height: 512
+  width: 512
+  num_images_per_prompt: 1
+  num_inference_steps: 50
+  guidance_scale: 2
+  noise_scale: 2
+  shift: 3
+  sampling_method: euler
+  cfg_interval: [0, 1.0]
+
+  do_sample: false
+  temperature: 1.0
+  top_k: null
+  top_p: null
+  max_new_tokens: 512
+
+  negative_prompt: "identity changed, different person, face altered, different facial features, lost subject, missing subject, replaced subject, drastic pose change, broken anatomy, extra limbs, missing limbs, distorted body, deformed face, hallucinated details, removed subject details, inconsistent lighting, mismatched style, oversaturated edit, unintended color shift, blurry, watermark, jpeg artifacts, text artifacts, low quality, worst quality, bad composition"
+
+image_path: ./data_examples/sample.jpg
+instruction: "make it sunset"

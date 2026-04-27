@@ -1,0 +1,14 @@
+torch>=2.4
+torchvision
+transformers>=4.52
+tokenizers
+einops
+torchdiffeq
+torchtnt
+hydra-core>=1.3
+omegaconf
+pillow
+numpy
+tqdm
+huggingface-hub
+safetensors

@@ -1,0 +1,12 @@
+# Text-only conversation dataset (no images) over a local JSONL manifest.
+#
+# Each JSONL line: {"conversations": [{"from": "human", "value": "..."}, {"from": "gpt", "value": "..."}]}
+
+_target_: tuna.data.datasets.ti_dataset.TIDataset
+
+jsonl_path: ./data_examples/text_only.jsonl
+image_root: ./data_examples
+image_size: 512
+data_type: mmu_text
+max_text_length: 2048
+center_crop: true

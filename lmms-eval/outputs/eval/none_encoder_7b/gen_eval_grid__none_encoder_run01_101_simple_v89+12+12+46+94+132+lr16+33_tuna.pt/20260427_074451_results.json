@@ -1,0 +1,108 @@
+{
+  "results": {
+    "countbench": {
+      "alias": "countbench",
+      "acc,none": 0.9144602851323829,
+      "acc_stderr,none": 0.012634797434877032
+    }
+  },
+  "group_subtasks": {
+    "countbench": []
+  },
+  "configs": {
+    "countbench": {
+      "task": "countbench",
+      "dataset_path": "vikhyatk/CountBenchQA",
+      "test_split": "test",
+      "full_docs": false,
+      "process_results_use_image": false,
+      "doc_to_visual": "<function countbench_doc_to_visual at 0x7fc526f845e0>",
+      "doc_to_text": "<function countbench_doc_to_text at 0x7fc526f85760>",
+      "doc_to_target": "<function countbench_doc_to_target at 0x7fc526f85bc0>",
+      "process_results": "<function countbench_process_results at 0x7fc526f86020>",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "max_new_tokens": 16,
+        "temperature": 0.0,
+        "do_sample": false,
+        "until": [
+          "\n\n"
+        ]
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": [
+        {
+          "version": 0.0
+        }
+      ],
+      "lmms_eval_specific_kwargs": {
+        "default": {
+          "pre_prompt": "Look at the image carefully and count the objects. Answer with just a number, without any additional text. ",
+          "post_prompt": ""
+        },
+        "pre_prompt": "Look at the image carefully and count the objects. Answer with just a number, without any additional text. ",
+        "post_prompt": ""
+      }
+    }
+  },
+  "versions": {
+    "countbench": "Yaml"
+  },
+  "n-shot": {
+    "countbench": 0
+  },
+  "higher_is_better": {
+    "countbench": {
+      "acc": true
+    }
+  },
+  "n-samples": {
+    "countbench": {
+      "original": 491,
+      "effective": 491
+    }
+  },
+  "config": {
+    "model": "tuna_none_encoder",
+    "model_args": "config_file=lmms_eval/models/configs/tuna_none_encoder_7b.yaml,ckpt_path=/home/johanan/genads_models/tree/zhiheng/output/gen_eval_grid/none_encoder_run01_101_simple_v89+12+12+46+94+132+lr16+33_tuna.pt,precision=bf16",
+    "batch_size": "1",
+    "batch_sizes": [],
+    "device": null,
+    "use_cache": null,
+    "limit": null,
+    "bootstrap_iters": 100000,
+    "gen_kwargs": "",
+    "random_seed": 0,
+    "numpy_seed": 1234,
+    "torch_seed": 1234,
+    "fewshot_seed": 1234
+  },
+  "git_hash": null,
+  "date": "20260427_074451",
+  "task_hashes": {
+    "countbench": "fc2eea6d4a9fe2b70aa3496f70289d2988d5d3185372a53a6c95025b1de49ab1"
+  },
+  "model_source": "tuna_none_encoder",
+  "model_name": "/home/johanan/genads_models/tree/zhiheng/output/gen_eval_grid/none_encoder_run01_101_simple_v89+12+12+46+94+132+lr16+33_tuna.pt",
+  "model_name_sanitized": "gen_eval_grid__none_encoder_run01_101_simple_v89+12+12+46+94+132+lr16+33_tuna.pt",
+  "system_instruction": null,
+  "system_instruction_sha": null,
+  "fewshot_as_multiturn": false,
+  "chat_template": null,
+  "chat_template_sha": null,
+  "start_time": 108130.802122927,
+  "end_time": 108462.124760553,
+  "total_evaluation_time_seconds": "331.32263762599905"
+}

@@ -1,0 +1,67 @@
+# Variant C: pure patchify Tuna (~7B). No SigLIP, no VAE — Conv2d patchifier
+# straight into Qwen2.5-7B-Instruct. Aligned with tuna
+# `tuna_bigger_head_none_encoder_256_pixel_7b.yaml`.
+
+_target_: tuna.models.tuna_2_pixel.Tuna2PixelModel
+
+llm_model_path: "Qwen/Qwen2.5-7B-Instruct"
+load_stage1_model: null
+frozen_params: ['vae']  # tuna convention; ignored when there is no VAE.
+
+hidden_size: 3584
+num_attention_heads: 56
+num_key_value_heads: 14
+attention_backend: sdpa
+
+patch_size: 16
+image_latent_dim: 3
+image_latent_height: 16
+image_latent_width: 16
+hq_image_latent_height: 64
+hq_image_latent_width: 64
+mixed_modal_latent_height: 32
+mixed_modal_latent_width: 32
+
+add_time_embeds: true
+add_aspect_ratio_embeds: false
+mrope_type: dit_3drope_mm
+reshape_frame_to_batch_dim: false
+
+gradient_checkpointing: true
+gradient_checkpointing_kwargs:
+  use_reentrant: false
+
+# DeTok-style masked image modelling.
+enable_mask_token: true
+masked_image_ratio: 0.3
+masked_image_ratio_min: -0.7
+
+# MMU noise.
+mmu_noise_prob: 0.1
+mmu_noise_level: 0.1
+
+# Transport (flow-matching) — match tuna.
+path_type: "Linear"
+prediction: "velocity"
+snr_type: "lognorm"
+do_shift: true
+
+# Training coefficients.
+ntp_coeff: 1.0
+flow_coeff: 1.0
+und_max_t0: 1.0
+
+# Sampling defaults — match tuna; per-checkpoint overrides go in predict yamls.
+sampling_method: "euler"
+guidance_scale: 7.5
+num_inference_steps: 50
+time_shifting_factor: 3.0
+atol: 1.0e-6
+rtol: 1.0e-3
+reverse: false
+
+dtype: "bf16"
+flow_head_num: 16
+
+# JiT noise.
+noise_scale: 2.0

@@ -1,0 +1,12 @@
+# Multimodal understanding dataset over a local JSONL manifest.
+#
+# Each JSONL line: {"image": "imgs/000.jpg", "conversations": [{"from": "human", "value": "..."}, {"from": "gpt", "value": "..."}]}
+
+_target_: tuna.data.datasets.ti_dataset.TIDataset
+
+jsonl_path: ./data_examples/mmu_pairs.jsonl
+image_root: ./data_examples
+image_size: 512
+data_type: mmu
+max_text_length: 2048
+center_crop: true

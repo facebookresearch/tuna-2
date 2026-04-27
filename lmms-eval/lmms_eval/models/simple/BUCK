@@ -1,0 +1,50 @@
+load("@fbcode_macros//build_defs:python_library.bzl", "python_library")
+
+oncall("fill in oncall here @nocommit")
+
+python_library(
+    name = "showme_qwen2_5_pixel",
+    srcs = ["showme_qwen2_5_pixel.py"],
+    labels = ["autodeps2_generated"],
+    deps = [
+        "fbsource//third-party/pypi/accelerate:accelerate",
+        "fbsource//third-party/pypi/omegaconf:omegaconf",
+        "fbsource//third-party/pypi/pillow:pillow",
+        "fbsource//third-party/pypi/torch:torch",
+        "fbsource//third-party/pypi/tqdm:tqdm",
+        "//caffe2:torch",
+        "//genads/showme:showme_lib",
+        "//pytorch/vision:torchvision",
+    ],
+)
+
+python_library(
+    name = "showme_qwen2_5_none_encoder",
+    srcs = ["showme_qwen2_5_none_encoder.py"],
+    labels = ["autodeps2_generated"],
+    deps = [
+        "fbsource//third-party/pypi/accelerate:accelerate",
+        "fbsource//third-party/pypi/omegaconf:omegaconf",
+        "fbsource//third-party/pypi/pillow:pillow",
+        "fbsource//third-party/pypi/torch:torch",
+        "fbsource//third-party/pypi/tqdm:tqdm",
+        "//caffe2:torch",
+        "//genads/showme:showme_lib",
+        "//pytorch/vision:torchvision",
+    ],
+)
+
+python_library(
+    name = "showme_qwen2_5",
+    srcs = ["showme_qwen2_5.py"],
+    labels = ["autodeps2_generated"],
+    deps = [
+        "fbsource//third-party/pypi/accelerate:accelerate",
+        "fbsource//third-party/pypi/omegaconf:omegaconf",
+        "fbsource//third-party/pypi/pillow:pillow",
+        "fbsource//third-party/pypi/torch:torch",
+        "fbsource//third-party/pypi/tqdm:tqdm",
+        "//caffe2:torch",
+        "//pytorch/vision:torchvision",
+    ],
+)

@@ -1,0 +1,57 @@
+# Text-to-image prediction config.
+#
+# Variant-specific defaults (pipe, guidance_scale, noise_scale,
+# sampling_method) are injected by scripts/launch/predict.sh.
+#
+# All options:
+#   inference.pipe              Pipeline class: Tuna2PixelPipeline (none_encoder),
+#                               Tuna2RPixelPipeline (siglip_pixel), TunaPipeline (vae)
+#   inference.generation_mode   t2i_pixel (pixel variants) or t2i (vae variant)
+#   inference.height / width    Output resolution, e.g. 512, 1024
+#   inference.num_inference_steps  Diffusion steps (default: 50)
+#   inference.guidance_scale    CFG scale: 3 (none_encoder), 4 (siglip_pixel), 7.5 (vae)
+#   inference.noise_scale       JiT noise scale, pixel variants only (default: 2)
+#   inference.shift             Time-shift factor (default: 3)
+#   inference.sampling_method   euler (none_encoder) or heun (siglip_pixel)
+#   inference.cfg_interval      CFG interval, pixel variants only (default: [0, 1.0])
+#   inference.weight_dtype      bfloat16 or float32
+#   inference.negative_prompt   Negative prompt text
+#   inference.num_images_per_prompt  Number of images per prompt (default: 1)
+#   inference.ckpt_path         Path to checkpoint
+#   inference.output_dir        Output directory
+
+defaults:
+  - model: tuna_2_pixel_7b
+  - _self_
+
+inference:
+  inference_mode: t2i
+  pipe: Tuna2PixelPipeline
+  use_ckpt: true
+  ckpt_path: ./checkpoints/tuna_2_pixel_7b.pt
+  output_dir: ./outputs/predictions/t2i
+  generation_mode: t2i_pixel
+  use_chat_template: false
+  reca_mode: false
+  add_aspect_ratio_embeds: ${model.add_aspect_ratio_embeds}
+  weight_dtype: bfloat16
+
+  height: 512
+  width: 512
+  num_images_per_prompt: 1
+  num_inference_steps: 50
+  guidance_scale: 3
+  noise_scale: 2
+  shift: 3
+  sampling_method: euler
+  cfg_interval: [0, 1.0]
+
+  do_sample: false
+  temperature: 1.0
+  top_k: null
+  top_p: null
+  max_new_tokens: 512
+
+  negative_prompt: "ugly, oversaturated, distorted, deformed, disfigured, low quality, worst quality, blurry, noisy, unrealistic, pixelated, overexposed, harsh shadows, washed out, dull colors, unnatural contrast, bad lighting, uneven lighting, unnatural reflections, color banding, unrealistic textures, poor shading, fake details, plastic skin, waxy skin, unrealistic skin tone, color bleeding, jpeg artifacts, watermark, frame border, compression artifacts, low-res, low resolution, poor composition, off-centered, messy background, cluttered, cropped head, cut-off body, wrong perspective, out of frame, bad framing, tilted horizon, unnatural pose, broken limbs, bad anatomy, bad proportions, extra limbs, missing limbs, fused fingers, extra fingers, twisted arms, stiff pose, awkward expression, asymmetrical eyes, mismatched eyes, lopsided face, disfigured mouth, bad hands, poorly drawn hands, poorly drawn face, uncanny face, creepy smile, unnatural gaze, doll-like face, distorted face, mutated body, duplicated parts, multiple heads, extra body parts, text artifacts, signature, logo, cartoonish, 3d render, cgi, unreal engine, low depth, flat lighting, wrong focus, out of focus, motion blur, vignette, HDR effect, oversharpened, bad exposure, grainy, bad color balance, unrealistic highlights, poor white balance, low dynamic range"
+
+prompt: "A highly realistic beauty portrait in extreme close-up, showing the face of a young woman from just above the eyebrows down to the lips. Her skin is natural, luminous, and textured, with visible pores, fine facial hairs, subtle unevenness, and a slightly dewy finish, without heavy retouching or artificial smoothing. She has pale green-gray eyes, strong natural brows, soft nude lips, and a calm, introspective expression while looking slightly past the camera."

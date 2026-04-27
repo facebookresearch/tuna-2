@@ -1,0 +1,128 @@
+# =============================================================================
+# Tuna training config — 4-stream weighted mixed training.
+#
+# Usage:
+#   # Single GPU
+#   python -m tuna.scripts.train model.load_stage1_model=/path/to/ckpt.pt
+#
+#   # Multi-GPU (FSDP, 8 GPUs)
+#   torchrun --standalone --nproc-per-node=8 -m tuna.scripts.train \
+#       model.load_stage1_model=/path/to/ckpt.pt
+#
+# Override any field on the CLI, e.g.:
+#   torchrun ... -m tuna.scripts.train \
+#       model=tuna_2r_pixel_7b \
+#       model.load_stage1_model=/path/to/ckpt.pt \
+#       training.learning_rate=1e-5 \
+#       training.batch_size=2 \
+#       data.streams.t2i.jsonl_path=/my/t2i_data.jsonl
+# =============================================================================
+
+defaults:
+  - model: tuna_2_pixel_7b
+  - _self_
+
+# =============================================================================
+# Data — multi-stream weighted sampling
+# =============================================================================
+# Each stream has its own dataset, batch_size, and num_workers.
+# If batch_size / num_workers are omitted per stream, the global
+# training.batch_size / training.num_workers are used as fallback.
+#
+# sampling_weights: relative weights for stream selection (must sum to 1).
+# sync_sampling: if true, all ranks sample from the same stream per step
+#   (required for multi-GPU to avoid NCCL deadlocks).
+
+data:
+  sync_sampling: true
+  sampling_weights:
+    t2i: 0.50
+    edit: 0.20
+    mmu: 0.20
+    text: 0.10
+
+  streams:
+    t2i:
+      _target_: tuna.data.datasets.ti_dataset.TIDataset
+      jsonl_path: ./data_examples/ti_pairs.jsonl
+      image_root: ./data_examples
+      image_size: 512              # target image resolution
+      data_type: t2i               # t2i | mmu | mmu_text
+      max_text_length: 2048        # max unified sequence length
+      center_crop: true
+      multi_resolution: true       # enable aspect-ratio bucket selection
+      batch_size: 1                # must be 1 when multi_resolution=true
+      num_workers: 8
+
+    edit:
+      _target_: tuna.data.datasets.edit_dataset.EditDataset
+      jsonl_path: ./data_examples/edit_pairs.jsonl
+      image_root: ./data_examples
+      image_size: 512
+      max_text_length: 4096
+      center_crop: true
+      batch_size: 1                # must be 1 when multi_resolution=true
+      num_workers: 8
+
+    mmu:
+      _target_: tuna.data.datasets.ti_dataset.TIDataset
+      jsonl_path: ./data_examples/mmu_pairs.jsonl
+      image_root: ./data_examples
+      image_size: 512
+      data_type: mmu
+      max_text_length: 4096
+      center_crop: true
+      multi_resolution: true
+      batch_size: 1                # must be 1 when multi_resolution=true
+      num_workers: 8
+
+    text:
+      _target_: tuna.data.datasets.ti_dataset.TIDataset
+      jsonl_path: ./data_examples/text_only.jsonl
+      image_root: ./data_examples
+      image_size: 512
+      data_type: mmu_text
+      max_text_length: 4096
+      center_crop: true
+      batch_size: 3
+      num_workers: 8
+
+# =============================================================================
+# Training
+# =============================================================================
+
+training:
+  output_dir: ./outputs/train
+
+  # --- Schedule ---
+  max_epochs: 1
+  max_steps_per_epoch: 1000000     # set to small number for smoke test
+  learning_rate: 2.0e-5
+  weight_decay: 1.0e-2
+  warmup_steps: 1000               # linear warmup, then constant LR
+
+  # --- Batching ---
+  batch_size: 4                    # global fallback (per-stream overrides above)
+  num_workers: 8                   # global fallback (per-stream overrides above)
+  gradient_accumulation_steps: 1
+
+  # --- Precision ---
+  mixed_precision: bf16            # bf16 | fp16 | null
+
+  # --- EMA ---
+  ema_decay: 0.9999                # set to null to disable
+
+  # --- Checkpointing ---
+  save_every: 500                  # save checkpoint every N steps
+  keep_last: 3                     # keep only the last N checkpoints
+  gc_interval: 5001                # garbage collection interval (steps)
+
+  # --- FSDP ---
+  fsdp:
+    enable: true
+    sharding_strategy: SHARD_GRAD_OP   # SHARD_GRAD_OP | FULL_SHARD | NO_SHARD
+    state_dict_type: SHARDED_STATE_DICT
+    mixed_precision:
+      param_dtype: bf16
+      reduce_dtype: bf16
+      cast_root_forward_inputs: true

@@ -1,0 +1,11 @@
+# Image editing dataset over a local JSONL manifest.
+#
+# Each JSONL line: {"raw_image": "imgs/src.jpg", "out_image": "imgs/dst.jpg", "instruction": "make it sunset"}
+
+_target_: tuna.data.datasets.edit_dataset.EditDataset
+
+jsonl_path: ./data_examples/edit_pairs.jsonl
+image_root: ./data_examples
+image_size: 512
+max_text_length: 2048
+center_crop: true

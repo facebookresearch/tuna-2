@@ -1,0 +1,12 @@
+# Text-to-image dataset over a local JSONL manifest.
+#
+# Each JSONL line: {"image": "imgs/000.jpg", "caption": "a photo of a cat"}
+
+_target_: tuna.data.datasets.ti_dataset.TIDataset
+
+jsonl_path: ./data_examples/ti_pairs.jsonl
+image_root: ./data_examples
+image_size: 512
+data_type: t2i
+max_text_length: 2048
+center_crop: true

@@ -1,0 +1,60 @@
+# Variant A: Tuna with WAN 2.2 latent diffusion + SigLIP2 conditioning (~2B).
+# Aligned with tuna `tuna_bigger_head_uni_siglip2_wan2_2_512`.
+# Uses Qwen2.5-1.5B-Instruct as the LLM backbone.
+
+_target_: tuna.models.tuna.TunaModel
+
+siglip_model_id: "configs/pretrained/siglip2-so400m-patch16-384"
+siglip_image_size: 32
+siglip_patch_size: 1
+siglip_num_channels: 48
+siglip_feature_layer: -2
+vae_model_id: "Wan-AI/Wan2.2-T2V-5B"
+
+llm_model_path: "Qwen/Qwen2.5-1.5B-Instruct"
+load_stage1_model: null
+frozen_params: ['vae']
+
+hidden_size: 1536
+num_attention_heads: 24
+num_key_value_heads: 8
+attention_backend: sdpa
+
+patch_size: 1
+image_latent_dim: 48
+image_latent_height: 32
+image_latent_width: 32
+hq_image_latent_height: 64
+hq_image_latent_width: 64
+mixed_modal_latent_height: 32
+mixed_modal_latent_width: 32
+clip_latent_dim: 1152
+
+add_time_embeds: true
+add_aspect_ratio_embeds: false
+mrope_type: dit_3drope_mm
+reshape_frame_to_batch_dim: false
+
+gradient_checkpointing: true
+gradient_checkpointing_kwargs:
+  use_reentrant: false
+
+# Transport (flow-matching) — match tuna.
+path_type: "Linear"
+prediction: "velocity"
+snr_type: "lognorm"
+do_shift: true
+
+# Training coefficients.
+ntp_coeff: 0.2
+flow_coeff: 1.0
+und_max_t0: 1.0
+
+# Sampling defaults.
+sampling_method: "euler"
+guidance_scale: 7.5
+num_inference_steps: 50
+time_shifting_factor: 3.0
+
+dtype: "bf16"
+flow_head_num: 40

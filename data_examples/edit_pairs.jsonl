@@ -1,0 +1,3 @@
+{"raw_image": "imgs/edit0.png", "out_image": "imgs/edit0_target.png", "instruction": "add warm golden sunset lighting to the scene"}
+{"raw_image": "imgs/edit1.png", "out_image": "imgs/edit1_target.png", "instruction": "transform the image into Van Gogh's Starry Night painting style"}
+{"raw_image": "imgs/edit2.png", "out_image": "imgs/edit2_target.png", "instruction": "zoom in on the flower and remove the text at the bottom"}

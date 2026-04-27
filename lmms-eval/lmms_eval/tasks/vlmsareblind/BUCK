@@ -1,0 +1,9 @@
+load("@fbcode_macros//build_defs:python_library.bzl", "python_library")
+
+oncall("fill in oncall here @nocommit")
+
+python_library(
+    name = "utils",
+    srcs = ["utils.py"],
+    labels = ["autodeps2_generated"],
+)

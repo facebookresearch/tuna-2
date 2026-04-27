@@ -1,0 +1,59 @@
+# Tuna-2 (7B, no encoder) — pure pixel patchify, no SigLIP, no VAE.
+llm_model_path: Qwen/Qwen2.5-7B-Instruct
+frozen_params: ['vae']
+hidden_size: 3584
+image_latent_dim: 3
+
+image_latent_height: 16
+image_latent_width: 16
+hq_image_latent_height: 64
+hq_image_latent_width: 64
+mixed_modal_latent_height: 32
+mixed_modal_latent_width: 32
+patch_size: 16
+add_time_embeds: True
+add_aspect_ratio_embeds: False
+flow_head_num: 16
+mrope_type: dit_3drope_mm
+reshape_frame_to_batch_dim: False
+num_attention_heads: 56
+num_key_value_heads: 14
+attention_backend: sdpa
+
+# Transport
+path_type: "Linear"
+prediction: "velocity"
+loss_weight: null
+train_eps: null
+sample_eps: null
+snr_type: "lognorm"
+sampling_method: "euler"
+guidance_scale: 7.5
+num_inference_steps: 50
+atol: 1e-6
+rtol: 1e-3
+reverse: False
+do_shift: True
+time_shifting_factor: 3.0
+
+# Training
+ntp_coeff: 0.2
+flow_coeff: 1.0
+und_max_t0: 1.0
+use_disp: False
+load_stage1_model: null
+gradient_checkpointing: True
+gradient_checkpointing_kwargs:
+  use_reentrant: False
+
+# DeTok masked image
+enable_mask_token: False
+masked_image_ratio_min: 0.0
+masked_image_ratio: 0.75
+
+# MMU noise
+mmu_noise_prob: 0.0
+mmu_noise_level: 0.0
+
+# JiT noise
+noise_scale: 1.0
