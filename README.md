@@ -1,6 +1,6 @@
 <div align="center">
 
-# TUNA-2: Pixel Embeddings Beats Vision Encoders for Unified Understanding and Generation
+# TUNA-2: Pixel Embeddings Beat Vision Encoders for Unified Understanding and Generation
 
 [Zhiheng Liu](https://johanan528.github.io/)\*<sup>1,2</sup>,
 [Weiming Ren](https://cs.uwaterloo.ca/~w2ren/)\*<sup>1,3</sup>,
