@@ -1,3 +1,9 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
 """Hydra entry point for Tuna prediction.
 
 Usage::
@@ -6,8 +12,6 @@ Usage::
     python -m tuna.scripts.predict --config-name edit_vae_512 \\
         image_path=./img.jpg instruction="make it sunset"
 """
-
-# (c) Meta Platforms, Inc. and affiliates. Apache-2.0.
 
 from __future__ import annotations
 

@@ -1,3 +1,9 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
 """Shared base for the three Tuna pipeline classes.
 
 Owns the methods that are byte-for-byte identical across `TunaPipeline`,
@@ -6,8 +12,6 @@ Owns the methods that are byte-for-byte identical across `TunaPipeline`,
 ``_init_hyperparams`` (which calls a module-local ``get_hyper_params`` whose
 seq-len bucket choices differ between variants).
 """
-
-# (c) Meta Platforms, Inc. and affiliates. Apache-2.0.
 
 from __future__ import annotations
 

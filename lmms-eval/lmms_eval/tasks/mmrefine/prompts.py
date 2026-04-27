@@ -1,3 +1,9 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
 REFINEMENT_PROMPT = """
 You are a mathematical expert with extensive knowledge across various mathematical fields. Your task is to meticulously evaluate and, if necessary, correct a given mathematical question and its proposed solution. Follow these steps:
 1. Carefully read the provided question and solution.

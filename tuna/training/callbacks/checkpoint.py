@@ -1,3 +1,9 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
 """Local-filesystem checkpoint callback.
 
 Local checkpoint saving callback for Tuna training.
@@ -5,8 +11,6 @@ Writes ``model_step_<N>.pt`` (or
 ``.safetensors``) under a local directory and prunes old checkpoints to keep
 the most recent ``keep_last`` files.
 """
-
-# (c) Meta Platforms, Inc. and affiliates. Apache-2.0.
 
 from __future__ import annotations
 

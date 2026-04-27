@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
 # coding=utf-8
 # copied from https://github.com/speechio/chinese_text_normalization/blob/master/python/cn_tn.py
 # Authors:

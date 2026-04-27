@@ -1,3 +1,9 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
 """Tar wrapper for lmms_eval (NeurIPS 2025).
 
 Adapted from Tar/i2t_inference.py. Uses TextAlignedTokenizer (TA-Tok) to

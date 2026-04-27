@@ -1,3 +1,9 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
 # Utils for processing p3o3 dataset
 P3_CATEGORIES = ["orientation", "color", "size"]
 O3_CATEGORIES = ["orientation", "color", "focus", "shape", "size", "location", "pattern"]

@@ -1,3 +1,9 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
 """Hydra entry point for Tuna training.
 
 Usage::
@@ -6,8 +12,6 @@ Usage::
     torchrun --standalone --nproc-per-node=8 -m tuna.scripts.train \\
         --config-name stage1_t2i training.batch_size=8
 """
-
-# (c) Meta Platforms, Inc. and affiliates. Apache-2.0.
 
 from __future__ import annotations
 

@@ -1,3 +1,9 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
 """Return the normalized point distance."""
 
 from metrics.scoring.common.conversions import parse_point_2d_from_xml

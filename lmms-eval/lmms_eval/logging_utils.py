@@ -1,3 +1,9 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
 # Code mostly from: https://github.com/EleutherAI/lm-evaluation-harness/pull/1339, credit to: https://github.com/ayulockin
 import copy
 import glob

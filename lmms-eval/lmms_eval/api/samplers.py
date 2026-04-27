@@ -1,3 +1,9 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
 class ContextSampler:
     def __init__(self, docs, task, fewshot_indices=None, rnd=None) -> None:
         self.rnd = rnd

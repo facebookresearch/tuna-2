@@ -1,6 +1,6 @@
 # Copyright (c) Meta Platforms, Inc. and affiliates.
 # All rights reserved.
-#
+
 # This source code is licensed under the license found in the
 # LICENSE file in the root directory of this source tree.
 
@@ -17,8 +17,6 @@ This is the OSS replacement for the tuna ``SimpleInference`` runner. All
 Manifold / Model Store / video / inpainting code paths have been dropped;
 only local-file checkpoint loading is supported.
 """
-
-# (c) Meta Platforms, Inc. and affiliates. Apache-2.0.
 
 from __future__ import annotations
 

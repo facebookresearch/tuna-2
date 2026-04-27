@@ -1,11 +1,15 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
 """Save generated images during prediction to a local directory.
 
 Replaces the original ``SaveImageCallback`` which uploaded to Manifold. This
 OSS variant writes PNG files (and ``.txt`` prompt files alongside) to a local
 folder, with one subdirectory per rank to avoid name collisions.
 """
-
-# (c) Meta Platforms, Inc. and affiliates. Apache-2.0.
 
 from __future__ import annotations
 

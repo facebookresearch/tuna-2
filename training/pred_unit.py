@@ -1,10 +1,14 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
 """TorchTNT PredictUnit subclass for Tuna inference.
 
 Wraps a callable inference factory (typically :class:`tuna.inference.runner.TunaInference`)
 and forwards each batch to ``self.inference(data)``.
 """
-
-# (c) Meta Platforms, Inc. and affiliates. Apache-2.0.
 
 from __future__ import annotations
 

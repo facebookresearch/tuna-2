@@ -1,3 +1,9 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
 DESCRIPTIVE_RESP_INST = {
     1: """{}what is its title?
     * Your final answer should be the most relevant title of the plot that is explicitly written.

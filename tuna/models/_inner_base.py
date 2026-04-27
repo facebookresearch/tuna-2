@@ -1,6 +1,6 @@
 # Copyright (c) Meta Platforms, Inc. and affiliates.
 # All rights reserved.
-#
+
 # This source code is licensed under the license found in the
 # LICENSE file in the root directory of this source tree.
 
@@ -19,8 +19,6 @@ Each subclass keeps its own variant-specific ``__init__``,
 ``t2i_generate_edit``, and any extra hooks (e.g.
 ``adaptive_normalize_cfg_feat`` for B).
 """
-
-# (c) Meta Platforms, Inc. and affiliates. Apache-2.0.
 
 from __future__ import annotations
 

@@ -1,9 +1,13 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
 """Top-level training entrypoint that wraps :func:`torchtnt.framework.train`.
 
 Top-level training wrapper around :func:`torchtnt.framework.train`.
 """
-
-# (c) Meta Platforms, Inc. and affiliates. Apache-2.0.
 
 from __future__ import annotations
 

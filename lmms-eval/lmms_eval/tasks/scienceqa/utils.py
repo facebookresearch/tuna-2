@@ -1,3 +1,9 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
 def sqa_doc_to_text(doc, lmms_eval_specific_kwargs=None):
     context, question, choices = doc["hint"], doc["question"], doc["choices"]
     len_choices = len(choices)

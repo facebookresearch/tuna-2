@@ -1,3 +1,9 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
 # Copyright 2024-2025 The Alibaba Wan Team Authors. All rights reserved.
 # Licensed under the Apache License, Version 2.0.
 # pyre-unsafe

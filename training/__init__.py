@@ -1,6 +1,10 @@
-"""Tuna training infrastructure: AutoUnit, trainer, callbacks, FSDP utils."""
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
 
-# (c) Meta Platforms, Inc. and affiliates. Apache-2.0.
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
+"""Tuna training infrastructure: AutoUnit, trainer, callbacks, FSDP utils."""
 
 from __future__ import annotations
 

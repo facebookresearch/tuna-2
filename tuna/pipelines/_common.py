@@ -1,10 +1,14 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
 """Helpers shared across the three Tuna pipeline variants.
 
 Lifted from `tuna_pipeline.py`, `tuna_2_pixel_pipeline.py`, and
 `tuna_2r_pixel_pipeline.py` so the variant-specific files don't drift.
 """
-
-# (c) Meta Platforms, Inc. and affiliates. Apache-2.0.
 
 from __future__ import annotations
 

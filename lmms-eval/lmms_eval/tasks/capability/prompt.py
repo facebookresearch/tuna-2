@@ -1,3 +1,9 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
 class Prompts:
     def __init__(self):
         self.event_system_prompt = "You are a video analysis expert specializing in evaluating the accuracy of video captions, particularly the descriptions of the events in a video. Please carefully analyze the user-provided caption and compare it to each provided event. Determine whether the caption contains the event."

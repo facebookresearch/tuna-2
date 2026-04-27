@@ -1,11 +1,15 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
 """TorchTNT AutoUnit subclass for Tuna training.
 
 Cleaned-up port of the original tuna training unit. The OSS version drops
 the AIX logger entirely and uses ``torchtnt.utils.loggers.tensorboard.TensorBoardLogger``
 directly. All FSDP / EMA / training-step logic is preserved.
 """
-
-# (c) Meta Platforms, Inc. and affiliates. Apache-2.0.
 
 from __future__ import annotations
 

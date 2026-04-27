@@ -1,6 +1,10 @@
-"""Tuna training callbacks (local checkpoint saver + image saver)."""
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
 
-# (c) Meta Platforms, Inc. and affiliates. Apache-2.0.
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
+"""Tuna training callbacks (local checkpoint saver + image saver)."""
 
 from __future__ import annotations
 

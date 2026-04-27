@@ -1,3 +1,9 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
 """OmniGen2 wrapper for lmms_eval (image-to-text understanding only).
 
 OmniGen2 uses Qwen2.5-VL as its multimodal LLM. We load only the mllm + processor

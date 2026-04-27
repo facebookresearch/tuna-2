@@ -1,10 +1,14 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
 """Helpers shared across the three Tuna model variants.
 
 Pure module-level utilities lifted out of `tuna.py`, `tuna_2_pixel.py`, and
 `tuna_2r_pixel.py`. Kept here so the variant modules don't drift out of sync.
 """
-
-# (c) Meta Platforms, Inc. and affiliates. Apache-2.0.
 
 from __future__ import annotations
 

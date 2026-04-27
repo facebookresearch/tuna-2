@@ -1,3 +1,9 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
 stage1_image_search_text_requery_prompt = """You are a helpful assistant. I am giving you a question including an image, which cannot be solved without external knowledge.
 Assume you have access to a search engine (e.g., google). Please raise a query to the search engine to search for what is useful for you to answer the question correctly. You need to consider the characteristics of asking questions to search engines when formulating your questions. 
 You are also provided with the search result of the image in the question. You should leverage the image search result to raise the text query.
