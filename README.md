@@ -121,6 +121,7 @@ Due to policy constraints, we are unable to release the video generation model a
 
 - [ ] Release some of the Tuna-2 model weights.
 - [ ] Release some of the Tuna model weights.
+- [ ] Release the fully restored model weights (fine-tuned on external data to recover the missing layers).
 
 ### A Note on Model Release
 
