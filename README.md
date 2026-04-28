@@ -21,7 +21,7 @@
 
 \* Equal contribution
 
-**[[Project Page]](https://tuna-ai.org/tuna-2)** &nbsp; **[[arXiv]](https://arxiv.org/)**
+**[[Project Page]](https://tuna-ai.org/tuna-2)** &nbsp; **[[arXiv]]([https://arxiv.org/](https://arxiv.org/abs/2604.24763))**
 
 </div>
 
@@ -142,7 +142,7 @@ Meanwhile, we are also actively working on fine-tuning the removed layers using 
           and Ji, Yatai and He, Sen and Schult, Jonas
           and Xiang, Tao and Chen, Wenhu and Luo, Ping
           and Zettlemoyer, Luke and Cong, Yuren},
-  journal={arXiv preprint},
+  journal={arXiv preprint arXiv:2604.24763},
   year={2026}
 }
 ```
