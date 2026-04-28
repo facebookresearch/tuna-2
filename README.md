@@ -43,8 +43,8 @@ We simplify [Tuna](https://arxiv.org/abs/2501.10441) by progressively stripping 
 ## Installation
 
 ```bash
-git clone https://github.com/user/tuna.git
-cd tuna
+git clone https://github.com/facebookresearch/tuna-2.git
+cd tuna-2
 bash scripts/setup_uv.sh   # creates .venv with all dependencies
 source .venv/bin/activate
 ```
