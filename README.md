@@ -21,7 +21,7 @@
 
 \* Equal contribution
 
-**[[Project Page]](https://tuna-ai.org/tuna-2)** &nbsp; **[[arXiv]]([https://arxiv.org/](https://arxiv.org/abs/2604.24763))**
+**[[Project Page]](https://tuna-ai.org/tuna-2)** &nbsp; **[[arXiv]](https://arxiv.org/abs/2604.24763)**
 
 </div>
 
