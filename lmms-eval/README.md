@@ -1,6 +1,6 @@
 # Tuna Multimodal Understanding Evaluation
 
-Evaluation harness for Tuna models on multimodal understanding benchmarks, built on [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval).
+Evaluation harness for Tuna models on multimodal understanding benchmarks, built on [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval). Thanks for their awesome work!
 
 ## Installation
 
