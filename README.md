@@ -28,7 +28,7 @@
 
 ## Overview
 
-We simplify [Tuna](https://arxiv.org/abs/2501.10441) by progressively stripping away its visual encoding components. By removing the VAE, we first derive **Tuna-R**, a pixel-space unified multimodal model (UMM) that relies solely on a representation encoder. **Tuna-2** further streamlines the design by bypassing the representation encoder entirely, utilizing direct patch embedding layers for raw image inputs. Tuna-2 using pixel embeddings outperforms both Tuna-R and Tuna across a diverse suite of multimodal benchmarks.
+We simplify [Tuna](https://arxiv.org/abs/2512.02014) by progressively stripping away its visual encoding components. By removing the VAE, we first derive **Tuna-R**, a pixel-space unified multimodal model (UMM) that relies solely on a representation encoder. **Tuna-2** further streamlines the design by bypassing the representation encoder entirely, utilizing direct patch embedding layers for raw image inputs. Tuna-2 using pixel embeddings outperforms both Tuna-R and Tuna across a diverse suite of multimodal benchmarks.
 
 <p align="center">
   <img src="assets/teaser.png" width="90%" alt="Evolution of Tuna-2 architecture and multimodal performance comparison"/>
