@@ -1,7 +1,7 @@
 filelock==3.16.1
 geopy==2.4.1
 jieba==0.42.1
-nltk==3.9.1
+nltk==3.10.0
 numpy==1.26.4
 pronouncing==0.2.0
 rapidfuzz==3.9.5
