@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=61", "wheel"]
+requires = ["setuptools>=83.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -43,7 +43,7 @@ dependencies = [
     # Python 3.12 venvs no longer ship setuptools by default, AND setuptools
     # >=81 dropped the bundled `pkg_resources` module that torchtnt's
     # version.py still imports. Pin to a version that has both.
-    "setuptools>=68,<81",
+    "setuptools>=83.0.0,<84",
 ]
 
 [project.optional-dependencies]
