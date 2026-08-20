@@ -1069,9 +1069,8 @@ class TunaModel(TunaWrapperBase):
         image_masks = batch["image_masks"]
         modality_positions = batch["modality_positions"]
         data_type = batch["data_type"]
-        # SigLIP-resized image (matches tuna `images_clip` convention) plus
-        # the optional SigLIP2 spatial shape / attention mask companions.
-        images_clip = batch.get("images_clip", None)
+        # Optional SigLIP2 spatial shape / attention mask companions (ignored
+        # by classic SigLIP but kept for API symmetry with variant B).
         siglip_spatial_shapes = batch.get("siglip_spatial_shapes", None)
         siglip_pixel_attention_mask = batch.get("siglip_pixel_attention_mask", None)
 
@@ -1091,17 +1090,6 @@ class TunaModel(TunaWrapperBase):
             image_labels = None
             image_masks = None
 
-        # Variant A: SigLIP expects VAE-latent input (48ch), not RGB.
-        # Encode images_clip through the frozen VAE before passing to SigLIP.
-        if images_clip is not None and hasattr(self.tuna_model, "vae"):
-            with torch.no_grad():
-                clip_input = images_clip.to(weight_type)
-                if clip_input.dim() == 4:
-                    clip_input = clip_input.unsqueeze(2)
-                images_clip = self.tuna_model.vae.sample(
-                    clip_input, deterministic=True
-                )
-
         # Create attention mask
         block_mask, block_mask_diffhead = self.create_attention_mask(
             text_tokens.size(0),
@@ -1111,11 +1099,18 @@ class TunaModel(TunaWrapperBase):
             weight_type,
         )
 
-        # Forward pass through the model
+        # Forward pass through the model.
+        # Variant A conditions SigLIP on the noisy diffusion latent
+        # (`image_latents`) rather than on a clean, fixed-resolution copy of
+        # the target image. Passing `pixel_values` (the 384px `images_clip`)
+        # here would (a) leak the clean target into the SigLIP conditioning
+        # branch and (b) crash multi-resolution training: `images_clip` is
+        # always resized to 384px while the sequence's `num_image_tokens`
+        # follows the per-sample resolution bucket, so the number of SigLIP
+        # patches no longer matches the image span.
         logits, loss_ntp, loss_flow, loss_disp = self.tuna_model(
             text_tokens=text_tokens,
             image_latents=image_latents,
-            pixel_values=images_clip,
             siglip_spatial_shapes=siglip_spatial_shapes,
             siglip_pixel_attention_mask=siglip_pixel_attention_mask,
             t=t.to(weight_type),
